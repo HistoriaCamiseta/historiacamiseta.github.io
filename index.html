@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAMISETAS HISTORIA</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: url('fondo-futbol.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+        }
+        .navbar {
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 5px 20px; /* Barra más pequeña */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: absolute; /* Barra en su lugar inicial */
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Sombra */
+            transition: top 0.3s ease-in-out; /* Añadimos transición para el efecto de ocultarse */
+        }
+        .navbar img {
+            height: 30px; /* Ajustamos el tamaño del logo */
+        }
+        .navbar input {
+            padding: 5px;
+            font-size: 1em;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            width: 180px; /* Buscador más pequeño */
+        }
+        .sidebar {
+            width: 180px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            color: white;
+            text-align: center;
+            position: fixed;
+            top: 60px; /* Dejamos espacio debajo de la barra */
+            left: 0;
+            height: calc(100vh - 60px); /* Ajustamos el alto */
+            border-radius: 0 15px 15px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .sidebar h2 {
+            font-size: 1.2em;
+        }
+        .sidebar .league-button {
+            background: white;
+            color: black;
+            border: none;
+            padding: 10px;
+            margin: 5px 0;
+            width: 100%;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .sidebar .league-button:hover {
+            background: lightgray;
+        }
+        .content {
+            flex: 1;
+            padding: 20px;
+            margin-left: 200px;
+            margin-top: 80px; /* Dejamos espacio debajo de la barra superior */
+        }
+        h1 {
+            margin-top: 50px;
+            font-size: 3em;
+            text-shadow: 2px 2px 5px black;
+        }
+        #search {
+            padding: 15px;
+            width: 90%;
+            max-width: 500px;
+            margin: 20px auto;
+            display: block;
+            font-size: 1.2em;
+            border-radius: 20px;
+            border: 1px solid #ccc;
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+        .jersey {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s;
+            border: 5px solid lightgray;
+        }
+        .jersey:hover {
+            transform: scale(1.1);
+        }
+        .jersey img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar" id="navbar">
+        <img src="tu-logo.png" alt="Logo"> <!-- Cambia "tu-logo.png" por el nombre de tu archivo -->
+        <input type="text" id="search" placeholder="Buscar camiseta...">
+    </div>
+    <div class="sidebar">
+        <h2>Ligas Importantes</h2>
+        <button class="league-button">Premier League (Inglaterra)</button>
+        <button class="league-button">LaLiga (España)</button>
+        <button class="league-button">Serie A (Italia)</button>
+        <button class="league-button">Bundesliga (Alemania)</button>
+        <button class="league-button">Ligue 1 (Francia)</button>
+        <button class="league-button">MLS (EE.UU.)</button>
+        <button class="league-button">Brasileirão (Brasil)</button>
+        <button class="league-button">Liga MX (México)</button>
+        <button class="league-button">Superliga Argentina (Argentina)</button>
+        <button class="league-button">Copa Libertadores (Sudamérica)</button>
+    </div>
+    <div class="content">
+        <h1>CAMISETAS HISTORIA</h1>
+        <div class="gallery" id="gallery">
+            <div class="jersey"><img src="camiseta1.jpg" alt="Camiseta 1"></div>
+            <div class="jersey"><img src="camiseta2.jpg" alt="Camiseta 2"></div>
+            <div class="jersey"><img src="camiseta3.jpg" alt="Camiseta 3"></div>
+            <div class="jersey"><img src="camiseta4.jpg" alt="Camiseta 4"></div>
+        </div>
+    </div>
+    <script>
+        // Cuando hacemos scroll, la barra se fija en la parte superior
+        window.onscroll = function() {
+            var navbar = document.getElementById('navbar');
+            if (window.scrollY > 0) {
+                navbar.style.position = 'fixed';  // Se queda fija cuando hacemos scroll
+                navbar.style.top = '0';  // Mantiene la posición en la parte superior
+            } else {
+                navbar.style.position = 'absolute';  // Vuelve a su lugar original al estar arriba
+                navbar.style.top = '0';
+            }
+        };
+
+        document.getElementById('search').addEventListener('input', function () {
+            let searchValue = this.value.toLowerCase();
+            document.querySelectorAll('.jersey').forEach(jersey => {
+                let altText = jersey.querySelector('img').alt.toLowerCase();
+                jersey.style.display = altText.includes(searchValue) ? 'block' : 'none';
+            });
+        });
+    </script>
+</body>
+</html>
