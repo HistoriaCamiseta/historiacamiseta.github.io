@@ -18,26 +18,26 @@
         .navbar {
             width: 100%;
             background-color: rgba(0, 0, 0, 0.7);
-            padding: 5px 20px; /* Barra más pequeña */
+            padding: 10px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: absolute; /* Barra en su lugar inicial */
+            position: fixed;
             top: 0;
             left: 0;
             z-index: 1000;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Sombra */
-            transition: top 0.3s ease-in-out; /* Añadimos transición para el efecto de ocultarse */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
         }
         .navbar img {
-            height: 30px; /* Ajustamos el tamaño del logo */
+            height: 40px;
         }
         .navbar input {
-            padding: 5px;
+            padding: 8px;
             font-size: 1em;
             border-radius: 10px;
             border: 1px solid #ccc;
-            width: 180px; /* Buscador más pequeño */
+            width: 200px;
+            outline: none;
         }
         .sidebar {
             width: 180px;
@@ -46,9 +46,9 @@
             color: white;
             text-align: center;
             position: fixed;
-            top: 60px; /* Dejamos espacio debajo de la barra */
+            top: 60px;
             left: 0;
-            height: calc(100vh - 60px); /* Ajustamos el alto */
+            height: calc(100vh - 60px);
             border-radius: 0 15px 15px 0;
             display: flex;
             flex-direction: column;
@@ -75,22 +75,22 @@
             flex: 1;
             padding: 20px;
             margin-left: 200px;
-            margin-top: 80px; /* Dejamos espacio debajo de la barra superior */
+            margin-top: 100px;
         }
         h1 {
-            margin-top: 50px;
             font-size: 3em;
             text-shadow: 2px 2px 5px black;
         }
-        #search {
-            padding: 15px;
-            width: 90%;
-            max-width: 500px;
-            margin: 20px auto;
-            display: block;
-            font-size: 1.2em;
-            border-radius: 20px;
-            border: 1px solid #ccc;
+        .league-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .league-info img {
+            width: 50px;
+            height: 50px;
         }
         .gallery {
             display: flex;
@@ -123,6 +123,7 @@
         <img src="tu-logo.png" alt="Logo"> <!-- Cambia "tu-logo.png" por el nombre de tu archivo -->
         <input type="text" id="search" placeholder="Buscar camiseta...">
     </div>
+
     <div class="sidebar">
         <h2>Ligas Importantes</h2>
         <button class="league-button">Premier League (Inglaterra)</button>
@@ -136,32 +137,28 @@
         <button class="league-button">Superliga Argentina (Argentina)</button>
         <button class="league-button">Copa Libertadores (Sudamérica)</button>
     </div>
+
     <div class="content">
         <h1>CAMISETAS HISTORIA</h1>
+
+        <div class="league-info">
+            <img src="liga-argentina-logo.png" alt="Liga Argentina">
+            <h2>Superliga Argentina</h2>
+        </div>
+
         <div class="gallery" id="gallery">
-            <div class="jersey"><img src="CAMISETAS/camisetaBOCA1978.webp" alt="Camiseta 1"></div>
-            <div class="jersey"><img src="CAMISETAS/riber1996.webp" alt="Camiseta 2"></div>
-            <div class="jersey"><img src="CAMISETAS/independiente1973.webp" alt="Camiseta 3"></div>
-            <div class="jersey"><img src="CAMISETAS/racing1967.webp" alt="Camiseta 4"></div>
-            <div class="jersey"><img src="CAMISETAS/newells1992.webp" alt="Camiseta 1"></div>
-            <div class="jersey"><img src="CAMISETAS/sanlorenzo2014.webp" alt="Camiseta 2"></div>
-            <div class="jersey"><img src="CAMISETAS/independiente1973.webp" alt="Camiseta 3"></div>
-            <div class="jersey"><img src="CAMISETAS/bocaJRS1990.webp" alt="Camiseta 4"></div>
+            <div class="jersey"><img src="CAMISETAS/camisetaBOCA1978.webp" alt="Camiseta Boca 1978"></div>
+            <div class="jersey"><img src="CAMISETAS/riber1996.webp" alt="Camiseta River 1996"></div>
+            <div class="jersey"><img src="CAMISETAS/independiente1973.webp" alt="Camiseta Independiente 1973"></div>
+            <div class="jersey"><img src="CAMISETAS/racing1967.webp" alt="Camiseta Racing 1967"></div>
+            <div class="jersey"><img src="CAMISETAS/newells1992.webp" alt="Camiseta Newell's 1992"></div>
+            <div class="jersey"><img src="CAMISETAS/sanlorenzo2014.webp" alt="Camiseta San Lorenzo 2014"></div>
+            <div class="jersey"><img src="CAMISETAS/bocaJRS1990.webp" alt="Camiseta Boca 1990"></div>
         </div>
     </div>
-    <script>
-        // Cuando hacemos scroll, la barra se fija en la parte superior
-        window.onscroll = function() {
-            var navbar = document.getElementById('navbar');
-            if (window.scrollY > 0) {
-                navbar.style.position = 'fixed';  // Se queda fija cuando hacemos scroll
-                navbar.style.top = '0';  // Mantiene la posición en la parte superior
-            } else {
-                navbar.style.position = 'absolute';  // Vuelve a su lugar original al estar arriba
-                navbar.style.top = '0';
-            }
-        };
 
+    <script>
+        // Barra de búsqueda funcional
         document.getElementById('search').addEventListener('input', function () {
             let searchValue = this.value.toLowerCase();
             document.querySelectorAll('.jersey').forEach(jersey => {
