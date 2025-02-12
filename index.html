@@ -9,13 +9,15 @@
             font-family: Arial, sans-serif;
             text-align: center;
             background: linear-gradient(to bottom, #6a0dad, #ff8c00); /* Degradado violeta arriba a naranja abajo */
-            background-size: cover;
+            background-repeat: no-repeat; /* Evita que se repita */
+            background-attachment: fixed; /* Fija el fondo para que no se mueva con el scroll */
+            background-size: cover; /* Ajusta el fondo para ocupar toda la pantalla */
             color: white;
             display: flex;
             flex-direction: column;
             margin: 0;
-            
         }
+
 
         .navbar {
             width: 100%;
